@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC = path.join(__dirname, "public");
+const ROOT = __dirname;
 
 const types = {
   ".html": "text/html",
@@ -13,7 +13,7 @@ const types = {
 
 const server = http.createServer((req, res) => {
   let file = req.url === "/" ? "/index.html" : req.url;
-  file = path.join(PUBLIC, file);
+  file = path.join(ROOT, file);
 
   fs.readFile(file, (err, data) => {
     if (err) {
